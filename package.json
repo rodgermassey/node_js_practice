@@ -1,0 +1,14 @@
+{
+  "name": "node-practice",
+  "version": "1.0.0",
+  "description": "This package contains test node js programs for beginners.",
+  "main": "firstSimpleServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect": "^3.7.0"
+  }
+}
