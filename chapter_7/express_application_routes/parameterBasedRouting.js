@@ -1,6 +1,15 @@
 const express = require("express");
 
+/* In this server the order doesn't matter the app.param() method will always be called first */
 const app = express();
+app.get("/:user/:userId", (req, res, next) => {
+  /*  Not using res.send in this middleware as the server will throw error 
+    (Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client)
+    as we have already set the headers in the app.param() method when writing the response to the client.*/
+  res.end(
+    "user id : " + req.user.userId + "\nuser name : " + req.params["user"]
+  );
+});
 
 app.param("userId", (req, res, next, userId) => {
   res.write("Getting info for userId : " + userId + "\n");
@@ -8,13 +17,4 @@ app.param("userId", (req, res, next, userId) => {
   next();
 });
 
-app
-  .get("/:user/:userId", (req, res, next) => {
-    /*  Not using res.send in this middleware as the server will throw error 
-    (Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client)
-    as we have already set the headers in the app.param() method when writing the response to the client.*/
-    res.end(
-      "user id : " + req.user.userId + "\nuser name : " + req.params["user"]
-    );
-  })
-  .listen(8080);
+app.listen(8080);
