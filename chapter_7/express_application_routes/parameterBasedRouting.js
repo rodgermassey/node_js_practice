@@ -1,5 +1,7 @@
 const express = require("express");
-
+/* FOR THIS TO WORK YOU NEED TO FIRST REGISTER THE ROUTE USING EITHER 
+   app.(HTTP VERB) (I.E. get, put, post, delete) or register the route using app.use()
+*/
 /* In this server the order doesn't matter the app.param() method will always be called first */
 const app = express();
 app.get("/:user/:userId", (req, res, next) => {
